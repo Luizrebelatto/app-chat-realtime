@@ -1,4 +1,8 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "types": [
+      "styled-components/native"
+    ]
+  },
   "extends": "expo/tsconfig.base"
 }
