@@ -1,6 +1,6 @@
 import * as environment from "@env"
 
-const firebaseConfig = {
+const firebaseEnvironment = {
 	apiKey: environment.API_KEY,
 	authDomain: environment.AUTH_DOMAIN,
 	projectId: environment.PROJECT_ID,
@@ -10,4 +10,4 @@ const firebaseConfig = {
 	measurementId: environment.MEASUREMENT_ID
 };
 
-export default firebaseConfig;
+export default firebaseEnvironment;
