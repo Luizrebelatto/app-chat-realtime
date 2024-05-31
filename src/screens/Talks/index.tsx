@@ -4,7 +4,7 @@ import { Title, Wrapper } from "./styles";
 export function Talks(){
     return (
         <Wrapper>
-            <Title>Talks Screen</Title>
+            <Title>Talks screens</Title>
         </Wrapper>
     )
 }

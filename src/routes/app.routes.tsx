@@ -24,7 +24,7 @@ export function AppRoutes(){
                 tabBarActiveTintColor: 'black',
                 tabBarInactiveTintColor: 'gray',
             })}
-            initialRouteName="talks"
+            initialRouteName="contacts"
         >
             <Screen name="talks" component={Talks} options={{ title: "Conversas" }}/>
             <Screen name="contacts" component={Contacts} options={{ title: "Contatos" }}/>

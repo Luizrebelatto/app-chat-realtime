@@ -1,10 +1,27 @@
-import React from "react";
-import { Title, Wrapper } from "./styles";
+import React, { useState } from "react";
+import { Title, Wrapper, Input, Button, ButtonTitle } from "./styles";
 
 export function SignUp(){
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+     
     return (
         <Wrapper>
-            <Title>SignUp Screen</Title>
+            <Title>SignIn Screen</Title>
+            <Input
+                placeholder="Digite seu Email"
+                value={email}
+                onChangeText={(text)=> setEmail(text)}
+            />
+            <Input
+                placeholder="Digite a sua senha"
+                value={password}
+                onChangeText={(text)=> setPassword(text)}
+            />
+
+            <Button>
+                <ButtonTitle>Cadastra</ButtonTitle>
+            </Button>
         </Wrapper>
     )
 }
