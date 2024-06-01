@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { Title, Wrapper, Input, Button, ButtonTitle, ButtonNavigation, ButtonNavigationText } from "./styles";
-import { Alert } from 'react-native'
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { Title, Wrapper } from "./styles";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase"
+import { Alert, View } from 'react-native'
+
+import { Button } from "../../components/Button";
+import { ButtonNavigation } from "../../components/ButtonNavigation";
+import { Input } from "../../components/Input"
 
 export function SignUp({ navigation }){
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
     const handleSignUpUser = () => {
         if(email !== "" && password !== ""){
             createUserWithEmailAndPassword(auth, email, password)
             .then(() => {
                 navigation.navigate("signIn")
-                console.log("create user success")
             })
             .catch((error) => {
                 Alert.alert('Error Create User', error.message, [
@@ -22,40 +25,37 @@ export function SignUp({ navigation }){
                       onPress: () => console.log('Cancel Pressed'),
                       style: 'cancel',
                     },
-                ]); 
-                console.log("error create user: ", error.message)
+                ]);
             })
         }
     }
      
     return (
         <Wrapper>
-            <Title>SignUp Screen</Title>
-            <Input
-                placeholder="Digite seu Email"
-                value={email}
-                onChangeText={(text)=> setEmail(text.toLowerCase())}
-                autoCorrect={false}
-                autoCapitalize="none"
-            />
-            <Input
-                placeholder="Digite a sua senha"
-                value={password}
-                onChangeText={(text)=> setPassword(text.toLowerCase())}
-                autoCorrect={false}
-                autoCapitalize="none"
-            />
-
-            <Button onPress={handleSignUpUser}>
-                <ButtonTitle>Cadastrar</ButtonTitle>
-            </Button>
-
-            <ButtonNavigation onPress={() => navigation.navigate('signIn')}>
-                <ButtonNavigationText>
-                    ja tem conta? entre
-                </ButtonNavigationText>
-            </ButtonNavigation>
-
+            <Title>Cadastre sua Conta</Title>
+            <View style={{ alignItems: 'center' }}>
+                <Input
+                    type="user"
+                    placeholder="Digite seu email"
+                    value={email}
+                    onChangeText={(text: string) => setEmail(text)}
+                />
+                <Input
+                    type="lock"
+                    placeholder="Digite sua senha"
+                    value={password}
+                    onChangeText={(text: string) => setPassword(text)}
+                />
+                <Button
+                    title="Cadastrar"
+                    onPress={handleSignUpUser}
+                />
+                <ButtonNavigation
+                    description="Já tem conta?"
+                    title="Entrar"
+                    onPress={() => navigation.navigate('signIn')}
+                />
+            </View>
         </Wrapper>
     )
 }

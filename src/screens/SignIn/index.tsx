@@ -9,8 +9,8 @@ import { ButtonNavigation } from "../../components/ButtonNavigation";
 import { Input } from "../../components/Input"
 
 export function SignIn({ navigation }){
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
 
     const handleSignInuser = () => {
         if(email !== "" && password !== ""){
@@ -54,7 +54,7 @@ export function SignIn({ navigation }){
                 />
                 <ButtonNavigation
                     description="Não tem conta?"
-                    title="Cadastre-se"
+                    title="Cadastrer"
                     onPress={() => navigation.navigate('signUp')}
                 />
             </View>

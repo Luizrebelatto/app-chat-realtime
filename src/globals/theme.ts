@@ -1,6 +1,5 @@
 export default {
     colors: {
-        background: "#FEFEFE",
         beige: '#F5F5DC',
         white: '#FFFFFF',
         navyBlue: '#120A8F',
