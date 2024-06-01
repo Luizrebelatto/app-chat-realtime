@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Title, Wrapper, Input, Button, ButtonTitle, ButtonNavigation, ButtonNavigationText } from "./styles";
+import { Title, Wrapper } from "./styles";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase"
-import { Alert } from 'react-native'
+import { Alert, View } from 'react-native'
+
+import { Button } from "../../components/Button";
+import { ButtonNavigation } from "../../components/ButtonNavigation";
+import { Input } from "../../components/Input"
 
 export function SignIn({ navigation }){
     const [email, setEmail] = useState("")
@@ -30,33 +34,30 @@ export function SignIn({ navigation }){
      
     return (
         <Wrapper>
-            <Title>SignIn Screen</Title>
-            <Input
-                placeholder="Digite seu Email"
-                value={email}
-                onChangeText={(text)=> setEmail(text)}
-                keyboardType="email-address"
-                autoCorrect={false}
-                autoCapitalize="none"
-            />
-            <Input
-                placeholder="Digite a sua senha"
-                value={password}
-                onChangeText={(text)=> setPassword(text)}
-                keyboardType="default"
-                autoCorrect={false}
-                autoCapitalize="none"
-            />
-
-            <Button onPress={handleSignInuser}>
-                <ButtonTitle>Logar</ButtonTitle>
-            </Button>
-
-            <ButtonNavigation onPress={() => navigation.navigate('signUp')}>
-                <ButtonNavigationText>
-                    Não tem conta? cadastre
-                </ButtonNavigationText>
-            </ButtonNavigation>
+            <Title>Entre na sua Conta</Title>
+            <View style={{ alignItems: 'center' }}>
+                <Input
+                    type="user"
+                    placeholder="Digite seu email"
+                    value={email}
+                    onChangeText={(text: string) => setEmail(text)}
+                />
+                <Input
+                    type="lock"
+                    placeholder="Digite sua senha"
+                    value={password}
+                    onChangeText={(text: string) => setPassword(text)}
+                />
+                <Button
+                    title="Entrar"
+                    onPress={handleSignInuser}
+                />
+                <ButtonNavigation
+                    description="Não tem conta?"
+                    title="Cadastre-se"
+                    onPress={() => navigation.navigate('signUp')}
+                />
+            </View>
         </Wrapper>
     )
 }
