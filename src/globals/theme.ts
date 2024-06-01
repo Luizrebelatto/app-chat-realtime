@@ -1,5 +1,9 @@
 export default {
     colors: {
-        background: "#FEFEFE"
+        background: "#FEFEFE",
+        beige: '#F5F5DC',
+        white: '#FFFFFF',
+        navyBlue: '#120A8F',
+        black: "#000000"
     },
 }
