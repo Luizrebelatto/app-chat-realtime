@@ -1,13 +1,13 @@
-import * as environment from "@env"
+import { API_KEY, APP_ID, AUTH_DOMAIN, MEASUREMENT_ID, MESSAGING_SENDER_ID, PROJECT_ID, STORAGE_BUCKET } from "@env"
 
 const firebaseEnvironment = {
-	apiKey: environment.API_KEY,
-	authDomain: environment.AUTH_DOMAIN,
-	projectId: environment.PROJECT_ID,
-	storageBucket: environment.STORAGE_BUCKET,
-	messagingSenderId: environment.MESSAGING_SENDER_ID,
-	appId: environment.APP_ID,
-	measurementId: environment.MEASUREMENT_ID
+	apiKey: API_KEY,
+	authDomain: AUTH_DOMAIN,
+	projectId: PROJECT_ID,
+	storageBucket: STORAGE_BUCKET,
+	messagingSenderId: MESSAGING_SENDER_ID,
+	appId: APP_ID,
+	measurementId: MEASUREMENT_ID
 };
 
 export default firebaseEnvironment;

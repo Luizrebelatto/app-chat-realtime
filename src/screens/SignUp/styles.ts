@@ -35,3 +35,13 @@ export const ButtonTitle = styled.Text`
     font-size: 16px;
     text-align: center;
 `;
+
+export const ButtonNavigation = styled.TouchableOpacity`
+    align-self: center;
+    margin-top: 20px;
+`;
+
+export const ButtonNavigationText = styled.Text`
+    color: black;
+    font-size: 16px;
+`;
