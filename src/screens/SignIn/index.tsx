@@ -15,10 +15,7 @@ export function SignIn({ navigation }){
     const handleSignInuser = () => {
         if(email !== "" && password !== ""){
             signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                navigation.navigate("appRoutes")
-                console.log("Login Success")
-            })
+            .then(() => { navigation.navigate("appRoutes") })
             .catch((error) => {
                 Alert.alert('Error Login User', error.message, [
                     {
@@ -26,8 +23,7 @@ export function SignIn({ navigation }){
                       onPress: () => console.log('Cancel Pressed'),
                       style: 'cancel',
                     },
-                ]); 
-                console.log("Error Login: ", error.message)
+                ]);
             })
         }
     }
@@ -54,7 +50,7 @@ export function SignIn({ navigation }){
                 />
                 <ButtonNavigation
                     description="Não tem conta?"
-                    title="Cadastrer"
+                    title="Cadastrar"
                     onPress={() => navigation.navigate('signUp')}
                 />
             </View>

@@ -7,7 +7,7 @@ interface ITextInput {
     placeholder: string;
     type: 'lock' | 'user';
     value: string;
-    onChangeText: (text: string) => void
+    onChangeText: (text: string) => void;
 }
 
 export function Input({ placeholder, type, value, onChangeText }: ITextInput) {

@@ -6,7 +6,8 @@ declare module "styled-components/native" {
             navyBlue: string,
             beige: string,
             white: string,
-            black: string
+            black: string,
+            inactiveBlue: string
         },
     }
 }

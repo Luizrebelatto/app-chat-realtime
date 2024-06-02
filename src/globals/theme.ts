@@ -3,6 +3,7 @@ export default {
         beige: '#F5F5DC',
         white: '#FFFFFF',
         navyBlue: '#120A8F',
-        black: "#000000"
+        black: "#000000",
+        inactiveBlue: '#A2A0FF'
     },
 }
