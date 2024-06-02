@@ -2,7 +2,10 @@
   "compilerOptions": {
     "types": [
       "styled-components/native"
-    ]
+    ],
+    "paths": {
+      "@firebase/auth": ["./node_modules/@firebase/auth/dist/index.rn.d.ts"]
+    }
   },
   "extends": "expo/tsconfig.base"
 }

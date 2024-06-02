@@ -12,19 +12,23 @@ export function SignIn({ navigation }){
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
-    const handleSignInuser = () => {
-        if(email !== "" && password !== ""){
-            signInWithEmailAndPassword(auth, email, password)
-            .then(() => { navigation.navigate("appRoutes") })
-            .catch((error) => {
-                Alert.alert('Error Login User', error.message, [
-                    {
-                      text: 'Tentar Novamente',
-                      onPress: () => console.log('Cancel Pressed'),
-                      style: 'cancel',
-                    },
-                ]);
-            })
+    const handleSignInuser = async () => {
+        try {
+            if(email !== "" && password !== ""){
+                const response = await signInWithEmailAndPassword(auth, email, password);
+                navigation.navigate("appRoutes")
+                setEmail("")
+                setPassword("")
+                return { success: true, data: response?.user }
+            }
+        } catch (error) {
+            Alert.alert('Error Login Use', error.message, [
+                {
+                  text: 'Tentar Novamente',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+            ]);
         }
     }
      
@@ -33,13 +37,13 @@ export function SignIn({ navigation }){
             <Title>Entre na sua Conta</Title>
             <View style={{ alignItems: 'center' }}>
                 <Input
-                    type="user"
+                    type="account-circle"
                     placeholder="Digite seu email"
                     value={email}
                     onChangeText={(text: string) => setEmail(text)}
                 />
                 <Input
-                    type="lock"
+                    type="lock-outline"
                     placeholder="Digite sua senha"
                     value={password}
                     onChangeText={(text: string) => setPassword(text)}
