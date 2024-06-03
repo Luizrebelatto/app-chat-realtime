@@ -8,32 +8,29 @@ import { Button } from "../../components/Button";
 import { ButtonNavigation } from "../../components/ButtonNavigation";
 import { Input } from "../../components/Input"
 import { setDoc, doc } from "firebase/firestore";
+import { useAuth } from "../../context/authContext";
+
 
 export function SignUp({ navigation }){
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [name, setName] = useState<string>("")
 
-    const handleSignUpUser = async () => {
-        try {
-            if(email !== "" && password !== ""){
-                const response = await createUserWithEmailAndPassword(auth, email, password);
-                await setDoc(doc(database, 'users', response?.user?.uid), {
-                    name,
-                    userId: response?.user.uid
-                })
-                navigation.navigate("signIn")
-                setEmail("")
-                setPassword("")
-                setName("")
-                return { success: true, data: response?.user }
-            }
-        } catch (error) {
-            Alert.alert('Error Create User', error.message, [
+    const { createNewUser } = useAuth();
+
+    const handleSignUpUser = async() => {
+        let response = await createNewUser(email, password, name);
+        if(response.sucess) {
+            navigation.navigate("signIn")
+            setEmail("")
+            setPassword("")
+            setName("")
+        } else {
+            Alert.alert('Error Create User', response.data, [
                 {
-                  text: 'Tentar Novamente',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
+                    text: 'Tentar Novamente',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
                 },
             ]);
         }
