@@ -33,6 +33,8 @@ export const AuthContextProvider = ({ children }) => {
         if(docSnap.exists()){
             let data = docSnap.data()
             console.log("Linha 35: ", data)
+            console.log("Linha 35a: ", data.userId)
+            console.log("Linha 35b: ", ...user)
             setUser({ ...user, name: data.name, userId: data.userid })
         }
     }
@@ -77,10 +79,10 @@ export const AuthContextProvider = ({ children }) => {
 
 export const useAuth = () => {
     const value = useContext(AuthContext)
+    console.log("linha 81: ", value)
 
     if(!value) {
         throw new Error('useAuth must be wrapped inside AuthContextProvider');
-        
     }
     return value
 }

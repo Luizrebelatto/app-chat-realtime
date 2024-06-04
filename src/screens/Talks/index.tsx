@@ -9,7 +9,7 @@ import { TalkItem } from "../../components/TalkItem";
 import { getDocs, query, where } from "firebase/firestore";
 import { usersRef } from "../../config/firebase";
 
-export function Talks() {
+export function Talks({ navigation }) {
     const insets = useSafeAreaInsets()
 
     const { user } = useAuth()
@@ -44,10 +44,10 @@ export function Talks() {
         >
             <ScrollView>
                 {users?.map((item, index) => (
-                    <TalkItem key={index} item={item} />
+                    <TalkItem key={index} item={item} router={()=> navigation.navigate('chatRoom', item)}/>
                 ))}
             </ScrollView>
-            <Title>Talks screens</Title>
+            {/* <Title>Talks screensss</Title> */}
             {/* {users.length > 0 ? (
                 <TalkList users={users}/>
             ):(

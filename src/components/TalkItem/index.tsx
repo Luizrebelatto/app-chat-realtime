@@ -4,18 +4,18 @@ import { TouchableOpacity, Text } from "react-native"
 
 interface Props {
     item: any
-    router: any
+    router: () => void;
 }
 
-export function TalkItem({ item, router }: Props ) {
+export function TalkItem({ item, router }:Props) {
 
-    const openChatRoom = () => {
-        router.push({pathName: '/ChatRoom', params: item})
-    }
+    // const openChatRoom = () => {
+    //     router()
+    // }
     return (
         <Wrapper>
-            <TouchableOpacity style={{ width: "80%", backgroundColor: 'yellow', height: 40 }} onPress={openChatRoom}>
-            <Text>Nome</Text>
+            <TouchableOpacity style={{ width: "80%", backgroundColor: 'yellow', height: 40 }} onPress={router}>
+            <Text>{item.name}</Text>
             </TouchableOpacity>
         </Wrapper>
     )

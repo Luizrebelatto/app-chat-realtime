@@ -5,12 +5,24 @@ import { Talks } from "../screens/Talks";
 import { Settings } from "../screens/Settings";
 import AntDesign from '@expo/vector-icons/AntDesign'
 import theme from "../globals/theme";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ChatRoom } from "../screens/ChatRoom";
 
-const { Navigator, Screen } = createBottomTabNavigator() 
+const { Navigator, Screen } = createBottomTabNavigator()
+const Stack = createNativeStackNavigator()
+
+function StackNavigator() {
+    return (
+      <Stack.Navigator initialRouteName="talks" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="talks" component={Talks}/>
+        <Stack.Screen name="chatRoom" component={ChatRoom}/>
+      </Stack.Navigator>
+    );
+  }
 
 export function AppRoutes(){
     const iconNames = {
-        talks: 'wechat',
+        stackNavigator: 'wechat',
         settings: 'setting',
         contacts: 'contacts'
     };
@@ -26,11 +38,12 @@ export function AppRoutes(){
                 tabBarActiveTintColor: theme.colors.navyBlue,
                 tabBarInactiveTintColor: '#A2A0FF',
             })}
-            initialRouteName="talks"
+            initialRouteName="stackNavigator"
         >
-            <Screen name="talks" component={Talks} options={{ title: "Conversas" }}/>
+            <Screen name="stackNavigator" component={StackNavigator} options={{ title: "Conversas" }}/>
             <Screen name="contacts" component={Contacts} options={{ title: "Contatos" }}/>
             <Screen name="settings" component={Settings} options={{ title: "Configurações" }}/>
+
         </Navigator>
     )
 }
