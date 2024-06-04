@@ -23,4 +23,3 @@ export const auth = initializeAuth(app, {
 export const database = getFirestore(app);
 export const usersRef = collection(database, 'users')
 export const chatsRef = collection(database, 'chats')
-// const analytics = getAnalytics(app);

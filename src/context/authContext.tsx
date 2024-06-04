@@ -14,6 +14,8 @@ export const AuthContextProvider = ({ children }) => {
             if(user){
                 setUserAuthenticated(true)
                 setUser(user)
+                console.log("LINHAAA: ", user.uid)
+
                 updateUserData(user.uid)
             } else {
                 setUserAuthenticated(false)
@@ -24,11 +26,13 @@ export const AuthContextProvider = ({ children }) => {
     },[])
 
     const updateUserData = async (userId) => {
+        console.log("Linha 29: ", userId)
         const docRef = doc(database, 'users', userId);
         const docSnap = await getDoc(docRef);
 
         if(docSnap.exists()){
             let data = docSnap.data()
+            console.log("Linha 35: ", data)
             setUser({ ...user, name: data.name, userId: data.userid })
         }
     }
