@@ -1,36 +1,43 @@
-import React, { useEffect } from "react";
-import { Wrapper } from './styles' 
-import { View, Text } from "react-native"
-interface Props {
-    message: any
-    currentUser: any
+import React from "react";
+import { MessageWrapper, MessageText, Content } from './styles' 
+import { Timestamp } from "firebase/firestore";
+
+interface IMessagesChatItem {
+    message: {
+        createdAt: Timestamp
+        senderName: string;
+        text: string;
+        userId: string;
+    }
+    currentUser: {
+        _redirectEventId: string;
+        apiKey: string
+        appName: string
+        createdAt: string
+        displayName: string
+        email: string
+        emailVerified:boolean
+        isAnonymous: boolean
+        lastLoginAt: string
+        phoneNumber: string
+        photoURL: string
+        providerData: string[][]
+        stsTokenManager: {
+            accessToken: string
+            expirationTime: string
+            refreshToken: string
+        }
+        tenantId: string
+        uid: string
+    }
 }
 
-export function MessagesChatItem({ message, currentUser }: Props){
-    // useEffect(() => {
-    //     console.log("message linai: ", message?.userId)
-    //     console.log("currentUser linai: ", currentUser?.uid)
-    // },[])
-    // return(
-    //     <Wrapper>
-
-    //     </Wrapper>
-    // )
-    if(currentUser?.uid == message?.userId){
-        return (
-            <View style={{ flexDirection: "row", backgroundColor: 'pink', justifyContent: "flex-end", paddingRight: 10 }}>
-                <View style={{ alignItems: "flex-end", alignSelf: "flex-end", backgroundColor: 'orange', marginBottom: 5 }}>
-                    <Text>{message?.text}</Text>
-                </View>
-            </View>
-        )
-    } else {
-        return (
-            <View style={{ flexDirection: "row", backgroundColor: 'green', justifyContent: "flex-start", paddingRight: 10 }}>
-                <View style={{ backgroundColor: 'orange', marginBottom: 5 }}>
-                    <Text>{message?.text}</Text>
-                </View>
-            </View>
-        )
-    }
+export function MessagesChatItem({ message, currentUser }: IMessagesChatItem) {
+    return (
+        <MessageWrapper isCurrentUser={currentUser?.uid == message?.userId}>
+            <Content isCurrentUser={currentUser?.uid == message?.userId}>
+                <MessageText isCurrentUser={currentUser?.uid == message?.userId}>{message?.text}</MessageText>
+            </Content>
+        </MessageWrapper>
+    )
 }
