@@ -14,8 +14,6 @@ export const AuthContextProvider = ({ children }) => {
             if(user){
                 setUserAuthenticated(true)
                 setUser(user)
-                console.log("LINHAAA: ", user.uid)
-
                 updateUserData(user.uid)
             } else {
                 setUserAuthenticated(false)
@@ -26,15 +24,11 @@ export const AuthContextProvider = ({ children }) => {
     },[])
 
     const updateUserData = async (userId) => {
-        console.log("Linha 29: ", userId)
         const docRef = doc(database, 'users', userId);
         const docSnap = await getDoc(docRef);
 
         if(docSnap.exists()){
             let data = docSnap.data()
-            console.log("Linha 35: ", data)
-            console.log("Linha 35a: ", data.userId)
-            console.log("Linha 35b: ", ...user)
             setUser({ ...user, name: data.name, userId: data.userid })
         }
     }
@@ -79,7 +73,6 @@ export const AuthContextProvider = ({ children }) => {
 
 export const useAuth = () => {
     const value = useContext(AuthContext)
-    console.log("linha 81: ", value)
 
     if(!value) {
         throw new Error('useAuth must be wrapped inside AuthContextProvider');

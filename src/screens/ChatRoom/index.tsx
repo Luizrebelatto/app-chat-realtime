@@ -42,8 +42,6 @@ export function ChatRoom(){
 
 
     const createNewRoom = async () => {
-        console.log("Linha 45: ", route?.params)
-        console.log("linha 27: ", user?.uid)
         let roomId = getRoomId(user?.uid, route.params?.userId)
         await setDoc(doc(database, 'chats', roomId), {
             roomId,
@@ -69,7 +67,6 @@ export function ChatRoom(){
                 createdAt: Timestamp.fromDate(new Date())
             })
 
-            console.log('new message id: ', newDoc.id)
         } catch (error) {
             Alert.alert('Message', error.message)
         }

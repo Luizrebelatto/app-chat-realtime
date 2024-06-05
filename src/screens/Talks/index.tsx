@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import { Title, Wrapper } from "./styles";
+import { Wrapper } from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAuth } from "../../context/authContext";
-import { TalkList } from "../../components/TalkList";
 import { ScrollView } from "react-native";
 import { TalkItem } from "../../components/TalkItem";
 import { getDocs, query, where } from "firebase/firestore";
@@ -20,7 +19,6 @@ export function Talks({ navigation }) {
         if(user?.uid){
             getUsers()
         }
-        console.log("linha 2323uu: ", user)
     },[])
 
     const getUsers = async () => {
@@ -34,7 +32,6 @@ export function Talks({ navigation }) {
         })
 
         setusers(data)
-        console.log("USUARIOS: ", data)
     }
 
     return (
