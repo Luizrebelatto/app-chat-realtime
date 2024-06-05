@@ -36,6 +36,8 @@ Chat em tempo real
 ```
 
 3. Executar Emulador
+   - Pressione ` i ` para abrir emulador ios
+   - Pressione ` a ` para abrir emulador android
 ```
 
  npx expo start --clear
