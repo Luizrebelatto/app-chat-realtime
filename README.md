@@ -18,7 +18,6 @@ Chat em tempo real
 
 - Criar Usuário
 - Logar
-- Deslogar
 - Conversar em tempo real
 
 ### ▶️  Executar
