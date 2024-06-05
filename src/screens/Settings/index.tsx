@@ -3,6 +3,8 @@ import { Title, Wrapper, Button, ButtonTitle } from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { useAuth } from "../../context/authContext";
 
+import packageJson from "../../../package.json"
+
 export function Settings(){
     const insets = useSafeAreaInsets()
 
@@ -14,10 +16,10 @@ export function Settings(){
 
     return (
         <Wrapper style={{ paddingTop: insets.top, paddingLeft: 20 }}>
-            <Title>Settings Screen</Title>
             <Button onPress={handlelogout}>
-                <ButtonTitle>Log out</ButtonTitle>
+                <ButtonTitle>Sair</ButtonTitle>
             </Button>
+            <Title>{`Versão ${packageJson.version}`}</Title>
         </Wrapper>
     )
 }

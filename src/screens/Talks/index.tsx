@@ -39,7 +39,7 @@ export function Talks({ navigation }) {
 
     return (
         <Wrapper   
-            style={{ paddingTop: insets.top, paddingLeft: 20 }}
+            style={{ paddingTop: insets.top }}
             showsVerticalScrollIndicator={false}
         >
             <ScrollView>
@@ -47,12 +47,6 @@ export function Talks({ navigation }) {
                     <TalkItem key={index} item={item} router={()=> navigation.navigate('chatRoom', item)}/>
                 ))}
             </ScrollView>
-            {/* <Title>Talks screensss</Title> */}
-            {/* {users.length > 0 ? (
-                <TalkList users={users}/>
-            ):(
-                <Title>Talks s111ns</Title>
-            )} */}
         </Wrapper>
     )
 }

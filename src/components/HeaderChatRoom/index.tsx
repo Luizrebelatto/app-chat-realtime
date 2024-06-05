@@ -1,22 +1,29 @@
-import React, { useEffect } from "react";
-import { Wrapper, Title } from "./styles"
-import { TouchableOpacity, Text, View } from "react-native"
+import React from "react";
+import { Wrapper, Name, BackButton, WrapperUser, ContentHeader } from "./styles"
+import { View } from "react-native"
+import { FontAwesome } from '@expo/vector-icons';
+import theme from "../../globals/theme";
 
-interface Props {
-    user: any
+interface IHeaderChatRoom {
+    user: {
+        name: string
+        userId: string
+    }
     router: any
 }
 
-export function HeaderChatRoom({ user, router }: Props) {
-    useEffect(()=> {
-        console.log("Linha 3: ", user)
-    },[])
+export function HeaderChatRoom({ user, router }: IHeaderChatRoom) {
     return (
         <Wrapper>
-            <View style={{ backgroundColor: 'yellow', width: "100%", height: 40, flexDirection: "row" }}>
-                <TouchableOpacity style={{ width: 40, height: 40, backgroundColor: 'red' }}></TouchableOpacity>
-                <Text>{user?.name}</Text>
-            </View>
+            <ContentHeader>
+                <BackButton>
+                    <FontAwesome name="chevron-circle-left" size={36} color="black" />
+                </BackButton>
+                <WrapperUser>
+                    <FontAwesome name="user-circle-o" size={24} color={theme.colors.black} />
+                    <Name>{user?.name}</Name>
+                </WrapperUser>
+            </ContentHeader>
         </Wrapper>
     )
 }

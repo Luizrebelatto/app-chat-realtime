@@ -41,7 +41,7 @@ export function AppRoutes(){
             initialRouteName="stackNavigator"
         >
             <Screen name="stackNavigator" component={StackNavigator} options={{ title: "Conversas" }}/>
-            <Screen name="contacts" component={Contacts} options={{ title: "Contatos" }}/>
+            {/* <Screen name="contacts" component={Contacts} options={{ title: "Contatos" }}/> */}
             <Screen name="settings" component={Settings} options={{ title: "Configurações" }}/>
 
         </Navigator>

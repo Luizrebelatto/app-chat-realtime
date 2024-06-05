@@ -6,13 +6,22 @@ export const Wrapper = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
-    border-bottom-width: 2px;
-    border-bottom-color: ${({ theme }) => theme.colors.navyBlue};
-    border-bottom-style: solid;
+    background-color: ${({ theme }) => theme.colors.navyBlue};
+    width: 50px;
+    height: 20px;
+    border-radius: 10px;
 `;
 
 export const ButtonTitle = styled.Text`
-    color: ${({ theme }) => theme.colors.navyBlue}
+    color: ${({ theme }) => theme.colors.white};
+    font-weight: bold;
+    text-align: center;
 `;
 
-export const Title = styled.Text``;
+export const Title = styled.Text`
+    color: ${({ theme }) => theme.colors.navyBlue};
+    font-size: 16px;
+    font-weight: bold;
+    justify-content: flex-end;
+    align-self: center;
+`;

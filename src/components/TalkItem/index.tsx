@@ -1,6 +1,7 @@
 import React from "react";
-import { Wrapper, Title } from "./styles"
-import { TouchableOpacity, Text } from "react-native"
+import { Wrapper, Title, Button } from "./styles"
+import { FontAwesome } from '@expo/vector-icons';
+import theme from "../../globals/theme";
 
 interface Props {
     item: any
@@ -8,15 +9,12 @@ interface Props {
 }
 
 export function TalkItem({ item, router }:Props) {
-
-    // const openChatRoom = () => {
-    //     router()
-    // }
     return (
         <Wrapper>
-            <TouchableOpacity style={{ width: "80%", backgroundColor: 'yellow', height: 40 }} onPress={router}>
-            <Text>{item.name}</Text>
-            </TouchableOpacity>
+            <Button onPress={router}>
+                <FontAwesome name="user-circle" size={50} color={theme.colors.inactiveBlue} />
+                <Title>{item.name}</Title>
+            </Button>
         </Wrapper>
     )
 }

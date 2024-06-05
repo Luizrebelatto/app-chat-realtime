@@ -24,7 +24,6 @@ export function TalkList({ users }: Props) {
     ]
     return (
         <Wrapper>
-            
             <FlatList
               data={DATA}
               renderItem={({item}) => <Title>{item.title}</Title>}

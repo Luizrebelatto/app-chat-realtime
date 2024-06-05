@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Title, Wrapper } from "./styles";
+import { Wrapper, Input, SendButton } from "./styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { useRoute } from "@react-navigation/native";
 import { HeaderChatRoom } from "../../components/HeaderChatRoom";
 import { MessagesChat } from "../../components/MessagesChat"
+import { Feather } from '@expo/vector-icons';
 
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { useAuth } from "../../context/authContext";
 import { getRoomId } from "../../utils/common";
 import { Timestamp, addDoc, collection, doc, onSnapshot, orderBy, query, setDoc } from "firebase/firestore";
 import { database } from "../../config/firebase";
+import theme from "../../globals/theme";
 
 export function ChatRoom(){
     const insets = useSafeAreaInsets()
@@ -78,15 +80,14 @@ export function ChatRoom(){
             <HeaderChatRoom user={route.params} router={route}/>
             <MessagesChat messages={messages} currentUser={user}/>
             <View style={{ flexDirection: 'row' }}>
-                <TextInput
+                <Input
                     ref={inputRef}
                     placeholder="Digite a mensagem"
-                    style={{ height: 40, borderWidth: 1, borderColor: 'red', width: '70%' }}
                     onChangeText={(value)=> textRef.current = value}
                 />
-                <TouchableOpacity onPress={handleSendMessage} style={{ width: 40, height: 40, backgroundColor: 'pink' }}>
-                    <Text>enviar</Text>
-                </TouchableOpacity>
+                <SendButton onPress={handleSendMessage}>
+                    <Feather name="send" size={24} color={theme.colors.navyBlue} />
+                </SendButton>
             </View>
         </Wrapper>
     )
