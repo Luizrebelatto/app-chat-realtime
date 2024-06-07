@@ -34,9 +34,9 @@ interface IMessagesChatItem {
 
 export function MessagesChatItem({ message, currentUser }: IMessagesChatItem) {
     return (
-        <MessageWrapper isCurrentUser={currentUser?.uid == message?.userId}>
-            <Content isCurrentUser={currentUser?.uid == message?.userId}>
-                <MessageText isCurrentUser={currentUser?.uid == message?.userId}>{message?.text}</MessageText>
+        <MessageWrapper isCurrentUser={currentUser == message?.userId}>
+            <Content isCurrentUser={currentUser == message?.userId}>
+                <MessageText isCurrentUser={currentUser == message?.userId}>{message?.text}</MessageText>
             </Content>
         </MessageWrapper>
     )

@@ -7,11 +7,15 @@ export const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState()
+    const [userIdInfo, setUserIdInfo] = useState()
+    const [userEmailInfo, setUserEmailIdInfo] = useState()
     const [userAuthenticated, setUserAuthenticated] = useState(undefined)
 
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, (user) => {
             if(user){
+                setUserEmailIdInfo(user?.email)
+                setUserIdInfo(user?.uid)
                 setUserAuthenticated(true)
                 setUser(user)
                 updateUserData(user.uid)
@@ -65,7 +69,7 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ user, userAuthenticated, loginUser, createNewUser, logoutUser }}>
+        <AuthContext.Provider value={{ userIdInfo ,user, userAuthenticated, loginUser, createNewUser, logoutUser, userEmailInfo }}>
             {children}
         </AuthContext.Provider>
     )

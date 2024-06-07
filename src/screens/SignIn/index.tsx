@@ -15,26 +15,6 @@ export function SignIn({ navigation }){
 
     const { loginUser } = useAuth();
 
-    const handleSignInuser = async () => {
-        try {
-            if(email !== "" && password !== ""){
-                const response = await signInWithEmailAndPassword(auth, email, password);
-                navigation.navigate("appRoutes")
-                setEmail("")
-                setPassword("")
-                return { success: true, data: response?.user }
-            }
-        } catch (error) {
-            Alert.alert('Error Login Use', error.message, [
-                {
-                  text: 'Tentar Novamente',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
-                },
-            ]);
-        }
-    }
-
     const handleSignInUser = async () => {
         if(email == ""  || password == ""){
             Alert.alert('Login', "Preencha corretamente os campos email e senha", [
@@ -78,7 +58,7 @@ export function SignIn({ navigation }){
                 />
                 <Button
                     title="Entrar"
-                    onPress={handleSignInuser}
+                    onPress={handleSignInUser}
                 />
                 <ButtonNavigation
                     description="Não tem conta?"

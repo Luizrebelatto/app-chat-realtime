@@ -16,7 +16,7 @@ import theme from "../../globals/theme";
 export function ChatRoom(){
     const insets = useSafeAreaInsets()
     const route = useRoute()
-    const { user } = useAuth();
+    const { user, userIdInfo, userEmailInfo } = useAuth();
     const [messages, setMessages] = useState([])
     const textRef = useRef('');
     const inputRef = useRef(null)
@@ -24,7 +24,7 @@ export function ChatRoom(){
     useEffect(() => {
         createNewRoom()
 
-        let roomId = getRoomId(user?.uid, route.params?.userId)
+        let roomId = getRoomId(userIdInfo, route.params?.userId)
         const docRef = doc(database, "chats", roomId)
         const messageRef = collection(docRef, "messages")
         const queryMessage = query(messageRef, orderBy('createdAt', 'asc'))
@@ -42,7 +42,7 @@ export function ChatRoom(){
 
 
     const createNewRoom = async () => {
-        let roomId = getRoomId(user?.uid, route.params?.userId)
+        let roomId = getRoomId(userIdInfo, route.params?.userId)
         await setDoc(doc(database, 'chats', roomId), {
             roomId,
             createdAt: Timestamp.fromDate(new Date())
@@ -54,16 +54,16 @@ export function ChatRoom(){
         if(!message) return;
 
         try {
-            let roomId = getRoomId(user?.uid, route.params?.userId)
+            let roomId = getRoomId(userIdInfo, route.params?.userId)
             const docRef = doc(database, 'chats', roomId)
             const messagesRef = collection(docRef, "messages")
             textRef.current = ""
 
             if(inputRef) inputRef?.current?.clear()
-            const newDoc = await addDoc(messagesRef, {
-                userId: user?.uid,
+            const newDoc = await addDoc(messagesRef, { 
+                userId: userIdInfo,
                 text: message,
-                senderName: user?.email,
+                senderName: userEmailInfo,
                 createdAt: Timestamp.fromDate(new Date())
             })
 
@@ -75,7 +75,7 @@ export function ChatRoom(){
     return (
         <Wrapper style={{ paddingTop: insets.top, paddingLeft: 20 }}>
             <HeaderChatRoom user={route.params} router={route}/>
-            <MessagesChat messages={messages} currentUser={user}/>
+            <MessagesChat messages={messages} currentUser={userIdInfo}/>
             <View style={{ flexDirection: 'row' }}>
                 <Input
                     ref={inputRef}
